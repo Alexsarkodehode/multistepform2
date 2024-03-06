@@ -1,5 +1,6 @@
-//
+//using querySelectorall to select all the different class steps
 const steps = document.querySelectorAll(".stp");
+//the different sidebar steps
 const circleSteps = document.querySelectorAll(".step");
 console.log(circleSteps)
 const formInputs = document.querySelectorAll(".step-1 form input");
@@ -17,12 +18,15 @@ const obj = {
   kind: null,
   price: null,
 };
+console.log(obj);
 
+/* For each time previous button is pressed currentStep will be decreased with one
+and current circle will be decreased with one. The same goes for next button  */
 steps.forEach((step) => {
   const nextBtn = step.querySelector(".next-step");
-  const prevBtn = step.querySelector(".goBack-step");
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
+  const goBackBtn = step.querySelector(".goBack-step");
+  if (goBackBtn) {
+    goBackBtn.addEventListener("click", () => {
       document.querySelector(`.step-${currentStep}`).style.display = "none";
       currentStep--;
       document.querySelector(`.step-${currentStep}`).style.display = "flex";
@@ -43,6 +47,7 @@ steps.forEach((step) => {
   });
 });
 
+/* this function gives you the end summary of the type of plan, the price and if you want it yearly or monthly */
 function summary(obj) {
   const planName = document.querySelector(".plan-name");
   const planPrice = document.querySelector(".plan-price");
@@ -51,6 +56,8 @@ function summary(obj) {
     obj.kind ? "yearly" : "monthly"
   })`;
 }
+
+/* validateForm function validates the information in our form and if there is an error it will show that error */
 function validateForm() {
   let valid = true;
   for (let i = 0; i < formInputs.length; i++) {
