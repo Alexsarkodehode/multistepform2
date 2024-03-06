@@ -23,7 +23,7 @@ console.log(obj);
 /* For each time previous button is pressed currentStep will be decreased with one
 and current circle will be decreased with one. The same goes for next button  */
 steps.forEach((step) => {
-  const nextBtn = step.querySelector(".next-step");
+  let nextBtn = step.querySelector(".next-step");
   const goBackBtn = step.querySelector(".goBack-step");
   if (goBackBtn) {
     goBackBtn.addEventListener("click", () => {
@@ -73,19 +73,25 @@ function validateForm() {
   }
   return valid;
 }
+
 function findLabel(el) {
   const idVal = el.id;
   const labels = document.getElementsByTagName("label");
+
+  //a for loop that goes each label and gives it its element and id
   for (let i = 0; i < labels.length; i++) {
     if (labels[i].htmlFor == idVal) return labels[i];
   }
 }
 
+/* Used array method .forEach for the plan button */
 plans.forEach((plan) => {
   plan.addEventListener("click", () => {
+    //removes class selected each time plan button is clicked
     document.querySelector(".selected").classList.remove("selected");
+    //add a class selected
     plan.classList.add("selected");
-    const planName = plan.querySelector("b");
+    const planName = plan.querySelector(".b");
     const planPrice = plan.querySelector(".plan-priced");
     obj.plan = planName;
     obj.price = planPrice;
